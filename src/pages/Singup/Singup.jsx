@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUser, googleLogIn } from '../../features/auth/authSlice';
 
 const Singup = () => {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, error, isError, email } = useSelector(state => state.auth);
 
@@ -17,7 +17,6 @@ const Singup = () => {
         confirmPassword: '',
     });
 
-    console.log(formData);
     const { password, confirmPassword } = formData;
 
     const [passwordCount, setPasswordCount] = useState("");
@@ -54,7 +53,6 @@ const Singup = () => {
 
     const handleSignUpData = (e) => {
         e.preventDefault();
-        console.log(formData);
         dispatch(createUser({ email: formData.email, password: formData.password }))
     };
 
@@ -63,13 +61,14 @@ const Singup = () => {
     }
 
     useEffect(() => {
-        if (!email && isError) {
+        if (isError) {
             toast.error(error)
         }
-        else {
+        else if (email) {
             toast.success("Successfully Registration Complete")
+            navigate('/')
         }
-    }, [isError, error, email])
+    }, [isError, error, email, navigate])
 
 
 
