@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUser, googleLogIn } from '../../features/auth/authSlice';
+import { createUser, googleLogIn, logout } from '../../features/auth/authSlice';
 
 const Singup = () => {
     const navigate = useNavigate();
@@ -65,10 +65,11 @@ const Singup = () => {
             toast.error(error)
         }
         else if (email) {
-            toast.success("Successfully Registration Complete")
-            navigate('/')
+            toast.success("Successfully Registration Complete");
+            dispatch(logout()); //redirect to the login page
+            navigate('/login');
         }
-    }, [isError, error, email, navigate])
+    }, [isError, error, email, navigate, dispatch])
 
 
 

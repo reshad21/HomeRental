@@ -38,7 +38,7 @@ export const authSlice = createSlice({
         },
         toggleLoading: (state) => {
             state.isLoading = false;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.pending, (state) => {
