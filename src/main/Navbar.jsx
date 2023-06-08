@@ -62,7 +62,7 @@ const Navbar = () => {
             <motion.span initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}>
-              <Link to='/' className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>List Your Property</Link>
+              <Link to='/propertylist' className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>List Your Property</Link>
             </motion.span>
 
 
