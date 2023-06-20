@@ -5,9 +5,12 @@ import electrician from '../../assets/images/electrician-3087536_1280.jpg';
 import Painting from '../../assets/images/paintbrush-4577578_1280.jpg';
 import plumber from '../../assets/images/plumbing-840835_1280.jpg';
 
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { increment } from '../../features/service/serviceSlice';
 
 const ServiceCard = () => {
+    const dispatch = useDispatch();
     return (
         <div className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
             <Card maxW='sm'>
@@ -37,7 +40,7 @@ const ServiceCard = () => {
                                 Buy now
                             </Button>
                         </Link>
-                        <Button variant='ghost' colorScheme='blue'>
+                        <Button variant='ghost' colorScheme='blue' onClick={() => dispatch(increment())}>
                             Add to cart
                         </Button>
                     </ButtonGroup>
@@ -70,7 +73,7 @@ const ServiceCard = () => {
                                 Buy now
                             </Button>
                         </Link>
-                        <Button variant='ghost' colorScheme='blue'>
+                        <Button variant='ghost' colorScheme='blue' onClick={() => dispatch(increment())}>
                             Add to cart
                         </Button>
                     </ButtonGroup>
@@ -102,7 +105,7 @@ const ServiceCard = () => {
                                 Buy now
                             </Button>
                         </Link>
-                        <Button variant='ghost' colorScheme='blue'>
+                        <Button variant='ghost' colorScheme='blue' onClick={() => dispatch(increment())}>
                             Add to cart
                         </Button>
                     </ButtonGroup>
@@ -134,7 +137,7 @@ const ServiceCard = () => {
                                 Buy now
                             </Button>
                         </Link>
-                        <Button variant='ghost' colorScheme='blue'>
+                        <Button variant='ghost' colorScheme='blue' onClick={() => dispatch(increment())}>
                             Add to cart
                         </Button>
                     </ButtonGroup>
