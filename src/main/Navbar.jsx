@@ -14,8 +14,11 @@ const Navbar = () => {
   const { email } = useSelector(state => state.auth);
   const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { value } = useSelector(state => state.service);
+  const { value, cart } = useSelector(state => state.service);
+  console.log(cart);
   const dispatch = useDispatch();
+
+
   const handleSignOut = (e) => {
     e.preventDefault();
     signOut(auth).then(() => {
@@ -95,7 +98,7 @@ const Navbar = () => {
             <span className='relative'>
               <BsFillCartCheckFill onClick={() => onOpen()} className='text-[#0B2B3C] text-2xl cursor-pointer' />
               <div className='w-4 h-4 rounded-full bg-blue-600 flex justify-center items-center absolute -top-[5px] left-3 '>
-                <p className='text-white text-[10px]'>{value}</p>
+                <p className='text-white text-[10px]'>{cart.length}</p>
               </div>
             </span>
 
@@ -165,7 +168,7 @@ const Navbar = () => {
                     <span className='relative'>
                       <BsFillCartCheckFill onClick={() => { onOpen(), setShow(false) }} className='text-white text-2xl cursor-pointer' />
                       <div className='w-4 h-4 rounded-full bg-blue-600 flex justify-center items-center absolute -top-[5px] left-3 '>
-                        <p className='text-white text-[10px]'>{value}</p>
+                        <p className='text-white text-[10px]'>{cart.length}</p>
                       </div>
                     </span>
                   </div>

@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "Painting",
+        "details": "This sofa is perfect for modern tropical spaces, baroque inspired spaces, earthy toned spaces and for people who love a chic design with a sprinkle of vintage design.",
+        "price": "$950",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkMoBsNlwubVYPVYCYiaG9oIJeRQDjszk_sw&usqp=CAU"
+    },
+    {
+        "id": "2",
+        "name": "Plumber",
+        "details": "This sofa is perfect for modern tropical spaces, baroque inspired spaces, earthy toned spaces and for people who love a chic design with a sprinkle of vintage design.",
+        "price": "$850",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW5fRizRyKD2fCoy1cyZe8wfZcdoWt1u-o3w&usqp=CAU"
+    },
+    {
+        "id": "3",
+        "name": "Electrician",
+        "details": "This sofa is perfect for modern tropical spaces, baroque inspired spaces, earthy toned spaces and for people who love a chic design with a sprinkle of vintage design.",
+        "price": "$550",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2--dHfLuyhghgqTzruaxAycbY_NTKO2Abwg&usqp=CAU"
+    },
+    {
+        "id": "4",
+        "name": "Carpenter",
+        "details": "This sofa is perfect for modern tropical spaces, baroque inspired spaces, earthy toned spaces and for people who love a chic design with a sprinkle of vintage design.",
+        "price": "$650",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5raAtJ4LCytPp_r8s2ZCTAg0IFb7wrBLbVg&usqp=CAU"
+    }
+]
