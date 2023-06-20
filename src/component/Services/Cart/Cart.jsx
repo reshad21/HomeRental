@@ -18,7 +18,7 @@ const Cart = ({ action }) => {
   const btnRef = React.useRef();
 
 
-  const { value } = useSelector(state => state.service);
+  const { value, cart } = useSelector(state => state.service);
   const dispatch = useDispatch();
 
   return (
@@ -33,26 +33,28 @@ const Cart = ({ action }) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Total Service Need: {value}</DrawerHeader>
+          <DrawerHeader>Total Service Need: {cart.length}</DrawerHeader>
 
           <DrawerBody>
             {
-              (value === 0) && <h1>Your cart is empty. Continue shopping..</h1>
+              (cart.length === 0) && <h1>Your cart is empty. Continue shopping..</h1>
             }
             {
-              (value > 0) &&
-              <div className="">
-                <div className="flex justify-between items-center w-[100%] border-slate-700 border-2 rounded-md p-1">
-                  <img src="" alt="" className='w-[40px] h-[40px] object-cover rounded' />
-                  <h3 className='text-sm font-semibold'>Carpenter</h3>
-                  <p className='text-sm font-semibold'>Price: <span className='font-bold'>$450</span></p>
-                  <div>
-                    <ButtonGroup size='sm' isAttached variant='outline'>
-                      <Button colorScheme='pink' onClick={() => dispatch(decrement())}><AiTwotoneDelete /></Button>
-                    </ButtonGroup>
+              cart.map(item => (
+                <div className="mb-2" key={item.id}>
+                  <div className="flex justify-between items-center w-[100%] border-slate-700 border-2 rounded-md p-1">
+                    <img src={item?.image} alt="" className='w-[40px] h-[40px] object-cover rounded' />
+                    <h3 className='text-sm font-semibold'>{item?.name}</h3>
+                    <p className='text-sm font-semibold'>Price: $<span className='font-bold'>{item?.price}</span></p>
+                    <div>
+                      <ButtonGroup size='sm' isAttached variant='outline'>
+                        <Button colorScheme='pink' onClick={() => dispatch(decrement())}><AiTwotoneDelete /></Button>
+                      </ButtonGroup>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))
+
             }
           </DrawerBody>
 

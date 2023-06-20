@@ -1,24 +1,30 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { toast } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useGetServicesQuery } from '../../features/api/apiSlice';
 import { addToCart } from '../../features/service/serviceSlice';
 
 const ServiceCard = () => {
-    const { cart } = useSelector(state => state.service);
-    // console.log(cart);
     const dispatch = useDispatch();
-
-
-
-    const [services, setService] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/services')
-            .then(res => res.json())
-            .then(data => setService(data.data))
-    }, [])
+    const { data, isLoading } = useGetServicesQuery();
+    if (isLoading === true) {
+        return (
+            <Stack direction='row' spacing={4} align='center'>
+                <Button
+                    isLoading
+                    loadingText='Loading'
+                    colorScheme='teal'
+                    variant='outline'
+                    spinnerPlacement='start'
+                >
+                    Submit
+                </Button>
+            </Stack>
+        )
+    }
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item));
@@ -28,7 +34,7 @@ const ServiceCard = () => {
     return (
         <div className='grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
             {
-                services.map((item) => (
+                data?.data.map((item) => (
                     <Card maxW='sm' key={item.id}>
                         <CardBody>
                             <Image

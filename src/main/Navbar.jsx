@@ -15,7 +15,6 @@ const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { value, cart } = useSelector(state => state.service);
-  console.log(cart);
   const dispatch = useDispatch();
 
 
