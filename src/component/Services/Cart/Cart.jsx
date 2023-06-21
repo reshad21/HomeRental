@@ -12,13 +12,13 @@ import {
 import React from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement } from '../../../features/service/serviceSlice';
+import { removeFromCart } from '../../../features/service/serviceSlice';
 const Cart = ({ action }) => {
   let { isOpen, onOpen, onClose } = action;
   const btnRef = React.useRef();
 
 
-  const { value, cart } = useSelector(state => state.service);
+  const { cart } = useSelector(state => state.service);
   const dispatch = useDispatch();
 
   return (
@@ -48,7 +48,7 @@ const Cart = ({ action }) => {
                     <p className='text-sm font-semibold'>Price: $<span className='font-bold'>{item?.price}</span></p>
                     <div>
                       <ButtonGroup size='sm' isAttached variant='outline'>
-                        <Button colorScheme='pink' onClick={() => dispatch(decrement())}><AiTwotoneDelete /></Button>
+                        <Button colorScheme='pink' onClick={() => dispatch(removeFromCart(item))}><AiTwotoneDelete /></Button>
                       </ButtonGroup>
                     </div>
                   </div>

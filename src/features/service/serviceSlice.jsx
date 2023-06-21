@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    value: 0,
     cart: [],
 }
 
@@ -9,19 +8,33 @@ export const serviceSlice = createSlice({
     name: 'service',
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
-        },
-        decrement: (state) => {
-            state.value -= 1;
-        },
         addToCart: (state, action) => {
-            state.cart.push(action.payload);
+            const selectedProduct = state.cart.find(item => item._id === action.payload._id);
+            if (!selectedProduct) {
+                const product = { ...action.payload, quentity: 1 };
+                state.cart.push(product);
+            }
+            else {
+                state.cart.filter(item => item._id !== selectedProduct._id).push(selectedProduct);
+                selectedProduct.quentity = selectedProduct.quentity + 1;
+            }
+        },
+        removeFromCart: (state, action) => {
+            if (action.payload.quentity > 1) {
+                const product = {
+                    ...action.payload,
+                    quentity: action.payload.quentity - 1,
+                };
+                state.cart = state.cart.filter(item => item._id !== action.payload._id);
+                state.cart.push(product)
+            }
+            else {
+                state.cart = state.cart.filter(item => item._id !== action.payload._id);
+            }
         }
     },
 })
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, addToCart } = serviceSlice.actions;
+export const { increment, decrement, incrementByAmount, addToCart, removeFromCart } = serviceSlice.actions;
 
 export default serviceSlice.reducer;
