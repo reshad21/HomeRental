@@ -15,8 +15,9 @@ export const serviceSlice = createSlice({
                 state.cart.push(product);
             }
             else {
-                state.cart.filter(item => item._id !== selectedProduct._id).push(selectedProduct);
                 selectedProduct.quentity = selectedProduct.quentity + 1;
+                state.cart = state.cart.filter(item => item._id !== selectedProduct._id);
+                state.cart.push(selectedProduct);
             }
         },
         removeFromCart: (state, action) => {
