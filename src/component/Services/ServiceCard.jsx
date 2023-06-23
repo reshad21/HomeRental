@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetServicesQuery } from '../../features/api/apiSlice';
-import { addToCart } from '../../features/service/serviceSlice';
+import { addToCart, addToCartTotalPrice } from '../../features/service/serviceSlice';
 
 const ServiceCard = () => {
     const dispatch = useDispatch();
@@ -28,6 +28,7 @@ const ServiceCard = () => {
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item));
+        dispatch(addToCartTotalPrice());
         toast.success("ADD TO CART");
     }
 

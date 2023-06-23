@@ -61,21 +61,29 @@ const Navbar = () => {
               <Link to='/' className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>About us</Link>
             </motion.span>
 
-            <motion.span initial={{ y: -20, opacity: 0 }}
+            {/* <motion.span initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}>
               <Link to='/propertylist' className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>List Your Property</Link>
-            </motion.span>
+            </motion.span> */}
 
 
             {
 
               email ?
-                <motion.span initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}>
-                  <Link onClick={handleSignOut} className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>Logout</Link>
-                </motion.span>
+                <>
+                  <motion.span initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}>
+                    <Link to='/propertylist' className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>List Your Property</Link>
+                  </motion.span>
+
+                  <motion.span initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}>
+                    <Link onClick={handleSignOut} className='text-base text-[#0B2B3C] hover:text-[#3657cd]'>Logout</Link>
+                  </motion.span>
+                </>
                 :
                 <>
                   <motion.span initial={{ y: -20, opacity: 0 }}
@@ -154,15 +162,36 @@ const Navbar = () => {
                       <Link to='/' className='text-base text-white'>About us</Link>
                     </motion.span>
 
-                    <motion.span onClick={() => setShow(false)} initial={{ y: -20, opacity: 0 }}
+                    <motion.span initial={{ y: -20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}>
-                      <Link to='/login' className='text-base text-white'>Login</Link>
+                      transition={{ duration: 0.5, delay: 0.3 }}>
+                      <Link to='/propertylist' className='text-base text-white hover:text-[#3657cd]'>List Your Property</Link>
                     </motion.span>
 
-                    <Link onClick={() => setShow(false)} to='/sing-up' className='singup-btn px-6 py-[6px] rounded shadow-sm cursor-pointer'>
-                      <p className='text-base text-white'>Singup</p>
-                    </Link>
+                    {
+
+                      email ?
+                        <motion.span initial={{ y: -20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.6, delay: 0.4 }}>
+                          <Link onClick={handleSignOut} className='text-base text-white hover:text-[#3657cd]'>Logout</Link>
+                        </motion.span>
+                        :
+                        <>
+                          <motion.span initial={{ y: -20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}>
+                            <Link to='/login' className='text-base text-white hover:text-[#3657cd]'>Login</Link>
+                          </motion.span>
+
+
+                          <Link to='/sing-up' className='singup-btn px-6 py-[6px] rounded shadow-sm cursor-pointer'>
+                            <p className='text-base text-white'>Singnup</p>
+                          </Link>
+
+                        </>
+
+                    }
 
                     <span className='relative'>
                       <BsFillCartCheckFill onClick={() => { onOpen(), setShow(false) }} className='text-white text-2xl cursor-pointer' />

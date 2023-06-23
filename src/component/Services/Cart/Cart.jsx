@@ -12,14 +12,22 @@ import {
 import React from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart } from '../../../features/service/serviceSlice';
+import { cartTotalPriceDecrees, removeFromCart } from '../../../features/service/serviceSlice';
 const Cart = ({ action }) => {
   let { isOpen, onOpen, onClose } = action;
   const btnRef = React.useRef();
 
 
-  const { cart } = useSelector(state => state.service);
+  const { cart, totalPrice } = useSelector(state => state.service);
   const dispatch = useDispatch();
+
+
+  const handleRemoveFromCart = (item) => {
+    dispatch(cartTotalPriceDecrees());
+    if (cart.length >= 0) {
+      dispatch(removeFromCart(item));
+    }
+  }
 
   return (
     <div>
@@ -41,20 +49,29 @@ const Cart = ({ action }) => {
             }
             {
               cart.map(item => (
-                <div className="mb-2" key={item.id}>
+                <div className="mb-2" key={item?._id}>
                   <div className="flex justify-between items-center w-[100%] border-slate-700 border-2 rounded-md p-1">
                     <img src={item?.image} alt="" className='w-[40px] h-[40px] object-cover rounded' />
                     <h3 className='text-sm font-semibold'>{item?.name}</h3>
                     <p className='text-sm font-semibold'>Price: $<span className='font-bold'>{item?.price}</span></p>
                     <div>
                       <ButtonGroup size='sm' isAttached variant='outline'>
-                        <Button colorScheme='pink' onClick={() => dispatch(removeFromCart(item))}><AiTwotoneDelete /></Button>
+                        <Button colorScheme='pink' onClick={() => handleRemoveFromCart(item)}><AiTwotoneDelete /></Button>
                       </ButtonGroup>
                     </div>
                   </div>
                 </div>
               ))
-
+            }
+            {
+              (totalPrice > 0) &&
+              <>
+                <hr />
+                <div className="flex justify-between">
+                  <p>Total Price:</p>
+                  <p>{totalPrice}</p>
+                </div>
+              </>
             }
           </DrawerBody>
 
